@@ -769,61 +769,30 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
 
-<span class="c1"># Define the neural network layers</span>
+<span class="c1"># Define the neural network fractal</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">define_layers</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s1">&#39;Tragedy (Pattern Recognition)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Cosmology&#39;</span><span class="p">,</span> <span class="s1">&#39;Geology&#39;</span><span class="p">,</span> <span class="s1">&#39;Biology&#39;</span><span class="p">,</span> <span class="s1">&#39;Ecology&#39;</span><span class="p">,</span> <span class="s2">&quot;Symbiotology&quot;</span><span class="p">,</span> <span class="s1">&#39;Teleology&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;History (Resources)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Resources&#39;</span><span class="p">],</span>  
-        <span class="s1">&#39;Epic (Negotiated Identity)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Faustian Bargain&#39;</span><span class="p">,</span> <span class="s1">&#39;Islamic Finance&#39;</span><span class="p">],</span>  
-        <span class="s1">&#39;Drama (Self vs. Non-Self)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Takaful&#39;</span><span class="p">],</span>  
-        <span class="s2">&quot;Comedy (Resolution)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Cacophony&#39;</span><span class="p">,</span> <span class="s1">&#39;Outside&#39;</span><span class="p">,</span> <span class="s1">&#39;Ukhuwah&#39;</span><span class="p">,</span> <span class="s1">&#39;Inside&#39;</span><span class="p">,</span> <span class="s1">&#39;Symphony&#39;</span><span class="p">]</span>  
+        <span class="s1">&#39;Suis&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Patient Access/Care&#39;</span><span class="p">,</span> <span class="s1">&#39;Hospital Records&#39;</span><span class="p">,</span> <span class="s1">&#39;Disclosure Risk&#39;</span><span class="p">,</span> <span class="s1">&#39;Collaborators&#39;</span><span class="p">,</span> <span class="s1">&#39;Databases&#39;</span><span class="p">,</span> <span class="s1">&#39;Analytic Scripts&#39;</span><span class="p">,</span> <span class="p">],</span> <span class="c1"># Static</span>
+        <span class="s1">&#39;Voir&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Information&#39;</span><span class="p">],</span>  
+        <span class="s1">&#39;Choisis&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Baseline&#39;</span><span class="p">,</span> <span class="s1">&#39;Decision&#39;</span><span class="p">],</span>  
+        <span class="s1">&#39;Deviens&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Adverse Event Markers&#39;</span><span class="p">,</span> <span class="s1">&#39;Comorbidity/ICD Codes&#39;</span><span class="p">,</span> <span class="s1">&#39;Temporal Changes&#39;</span><span class="p">],</span>  
+        <span class="s2">&quot;M&#39;èléve&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Mortality Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Organ Failure&#39;</span><span class="p">,</span>  <span class="s1">&#39;Hospitalization&#39;</span><span class="p">,</span> <span class="s1">&#39;Dependency&#39;</span><span class="p">,</span> <span class="s1">&#39;Physical Frailty&#39;</span><span class="p">]</span>  
     <span class="p">}</span>
 
 <span class="c1"># Assign colors to nodes</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">assign_colors</span><span class="p">():</span>
-    <span class="n">color_map</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;yellow&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Resources&#39;</span><span class="p">],</span>  
-        <span class="s1">&#39;paleturquoise&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Teleology&#39;</span><span class="p">,</span> <span class="s1">&#39;Islamic Finance&#39;</span><span class="p">,</span> <span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Symphony&#39;</span><span class="p">],</span>  
-        <span class="s1">&#39;lightgreen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Symbiotology&quot;</span><span class="p">,</span> <span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Outside&#39;</span><span class="p">,</span> <span class="s1">&#39;Inside&#39;</span><span class="p">,</span> <span class="s1">&#39;Ukhuwah&#39;</span><span class="p">],</span>  
-        <span class="s1">&#39;lightsalmon&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Biology&#39;</span><span class="p">,</span> <span class="s1">&#39;Ecology&#39;</span><span class="p">,</span> <span class="s1">&#39;Faustian Bargain&#39;</span><span class="p">,</span> <span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Cacophony&#39;</span><span class="p">],</span>
+    <span class="n">color_map</span> <span class="o">=</span> <span class="p">{</span> <span class="c1"># Dynamic</span>
+        <span class="s1">&#39;yellow&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Information&#39;</span><span class="p">],</span>  
+        <span class="s1">&#39;paleturquoise&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Analytic Scripts&#39;</span><span class="p">,</span> <span class="s1">&#39;Decision&#39;</span><span class="p">,</span> <span class="s1">&#39;Temporal Changes&#39;</span><span class="p">,</span> <span class="s1">&#39;Physical Frailty&#39;</span><span class="p">],</span>  
+        <span class="s1">&#39;lightgreen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Databases&#39;</span><span class="p">,</span> <span class="s1">&#39;Comorbidity/ICD Codes&#39;</span><span class="p">,</span> <span class="s1">&#39;Organ Failure&#39;</span><span class="p">,</span> <span class="s1">&#39;Dependency&#39;</span><span class="p">,</span> <span class="s1">&#39;Hospitalization&#39;</span><span class="p">],</span>  
+        <span class="s1">&#39;lightsalmon&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;Disclosure Risk&#39;</span><span class="p">,</span> <span class="s1">&#39;Collaborators&#39;</span><span class="p">,</span> <span class="s1">&#39;Baseline&#39;</span><span class="p">,</span>  
+            <span class="s1">&#39;Adverse Event Markers&#39;</span><span class="p">,</span> <span class="s1">&#39;Mortality Rate&#39;</span>
+        <span class="p">],</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">color</span> <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">color_map</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">}</span>
 
-<span class="c1"># Define edges</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">define_edges</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;Cosmology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Geology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Biology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Ecology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;Symbiotology&quot;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Teleology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Resources&#39;</span><span class="p">,</span> <span class="s1">&#39;Faustian Bargain&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Resources&#39;</span><span class="p">,</span> <span class="s1">&#39;Islamic Finance&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Faustian Bargain&#39;</span><span class="p">,</span> <span class="s1">&#39;Darabah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Faustian Bargain&#39;</span><span class="p">,</span> <span class="s1">&#39;Sharakah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Faustian Bargain&#39;</span><span class="p">,</span> <span class="s1">&#39;Takaful&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Islamic Finance&#39;</span><span class="p">,</span> <span class="s1">&#39;Darabah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Islamic Finance&#39;</span><span class="p">,</span> <span class="s1">&#39;Sharakah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Islamic Finance&#39;</span><span class="p">,</span> <span class="s1">&#39;Takaful&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Cacophony&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Outside&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Ukhuwah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Inside&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Darabah&#39;</span><span class="p">,</span> <span class="s1">&#39;Symphony&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Cacophony&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Outside&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Ukhuwah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Inside&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Sharakah&#39;</span><span class="p">,</span> <span class="s1">&#39;Symphony&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Cacophony&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Outside&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Ukhuwah&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Inside&#39;</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;Takaful&#39;</span><span class="p">,</span> <span class="s1">&#39;Symphony&#39;</span><span class="p">)</span>
-    <span class="p">]</span>
-
-<span class="c1"># Calculate node positions</span>
+<span class="c1"># Calculate positions for nodes</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">calculate_positions</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">x_offset</span><span class="p">):</span>
     <span class="n">y_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="p">))</span>
     <span class="k">return</span> <span class="p">[(</span><span class="n">x_offset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">y_positions</span><span class="p">]</span>
@@ -832,86 +801,56 @@ document.write(`
 <span class="k">def</span><span class="w"> </span><span class="nf">visualize_nn</span><span class="p">():</span>
     <span class="n">layers</span> <span class="o">=</span> <span class="n">define_layers</span><span class="p">()</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="n">assign_colors</span><span class="p">()</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">define_edges</span><span class="p">()</span>
-
     <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
     <span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">node_colors</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="c1"># Numbered node labels</span>
-    <span class="n">mapping</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">layer</span><span class="p">:</span>
-            <span class="n">mapping</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="c1"># Add nodes and positions</span>
+    <span class="c1"># Add nodes and assign positions</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">layer_name</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="n">calculate_positions</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">x_offset</span><span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">position</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
-            <span class="n">new_node</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-            <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="n">layer_name</span><span class="p">)</span>
-            <span class="n">pos</span><span class="p">[</span><span class="n">new_node</span><span class="p">]</span> <span class="o">=</span> <span class="n">position</span>
-            <span class="n">node_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;lightgray&#39;</span><span class="p">))</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="n">layer_name</span><span class="p">)</span>
+            <span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">position</span>
+            <span class="n">node_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;lightgray&#39;</span><span class="p">))</span>   
 
-    <span class="c1"># Add edges</span>
-    <span class="n">edge_colors</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">mapping</span> <span class="ow">and</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">mapping</span><span class="p">:</span>
-            <span class="n">new_source</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">source</span><span class="p">]</span>
-            <span class="n">new_target</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
-            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">new_source</span><span class="p">,</span> <span class="n">new_target</span><span class="p">)</span>
-            <span class="n">edge_colors</span><span class="p">[(</span><span class="n">new_source</span><span class="p">,</span> <span class="n">new_target</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;lightgrey&#39;</span>
+    <span class="c1"># Add edges (automated for consecutive layers)</span>
+    <span class="n">layer_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">layer_names</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">source_layer</span><span class="p">,</span> <span class="n">target_layer</span> <span class="o">=</span> <span class="n">layer_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">layer_names</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">[</span><span class="n">source_layer</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">[</span><span class="n">target_layer</span><span class="p">]:</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 
-    <span class="c1"># Add black highlight edges</span>
-    <span class="n">numbered_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapping</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-    <span class="n">black_edge_list</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span>   <span class="c1"># 4 -&gt; 7</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">8</span><span class="p">]),</span>   <span class="c1"># 7 -&gt; 9</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">]),</span>  <span class="c1"># 9 -&gt; 11</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">12</span><span class="p">]),</span> <span class="c1"># 11 -&gt; 13</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">13</span><span class="p">]),</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">14</span><span class="p">]),</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">15</span><span class="p">]),</span>
-        <span class="p">(</span><span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">numbered_nodes</span><span class="p">[</span><span class="mi">16</span><span class="p">])</span>
-    <span class="p">]</span>
-    <span class="k">for</span> <span class="n">src</span><span class="p">,</span> <span class="n">tgt</span> <span class="ow">in</span> <span class="n">black_edge_list</span><span class="p">:</span>
-        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">tgt</span><span class="p">)</span>
-        <span class="n">edge_colors</span><span class="p">[(</span><span class="n">src</span><span class="p">,</span> <span class="n">tgt</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
-
-    <span class="c1"># Draw the network</span>
+    <span class="c1"># Draw the graph</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
     <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
-        <span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> 
-        <span class="n">edge_color</span><span class="o">=</span><span class="p">[</span><span class="n">edge_colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">edge</span><span class="p">,</span> <span class="s1">&#39;lightgrey&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">],</span>
-        <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.2&quot;</span>
+        <span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+        <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=0.2&quot;</span>
     <span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CG-BEST&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ecosystem Integration&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>    
     <span class="c1"># ✅ Save the actual image *after* drawing it</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figures/cgbest.jpeg&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;figures/ecosystem-integration.jpeg&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
     <span class="c1"># plt.show()</span>
 
-<span class="c1"># Run it</span>
+<span class="c1"># Run the visualization</span>
 <span class="n">visualize_nn</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/784ad6813a077dc78c8f35990c6b44a9a8f79241110b4cf78aac3ff5b4f1a18b.png" src="_images/784ad6813a077dc78c8f35990c6b44a9a8f79241110b4cf78aac3ff5b4f1a18b.png" />
+<img alt="_images/2d581caf96d04d3a12b95ca354fd3ce835ccde4b68d1ddff3625b6b798a043b1.png" src="_images/2d581caf96d04d3a12b95ca354fd3ce835ccde4b68d1ddff3625b6b798a043b1.png" />
 </div>
 </div>
 <div class="float-right" style="float:none;width:100%;margin-left:0;border:none;padding:0;background:none;">
-  <a class="image-bubble layered-icon" href="figures/cgbest.jpeg" target="_blank" title="Click to magnify">
+  <a class="image-bubble layered-icon" href="figures/ecosystem-integration.jpeg" target="_blank" title="Click to magnify">
     <div class="large-icon"></div>
     <div class="small-icon"></div>
   </a>
 <figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="https://www.ledr.com/colours/white.jpg"><img alt="https://www.ledr.com/colours/white.jpg" src="https://www.ledr.com/colours/white.jpg" style="width: 1px; height: 1px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">🪡🔥🛠️🏝️ The CG-BEST model rendered as a neural network. A hierarchy of tragedy, history, epic, drama, and comedy—reflected as colored paths of descent and connection. Black edges signal the spine of the epistemic crucible.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text"><em>The Scientific Enterprise: Ecosystem, Navigation, Decisions, Tracking, Outcomes</em>. The Ecosystem encapsulates the intricate flow of information, decision-making, and outcomes within clinical medicine and public health. It functions as a multi-layered neural network, where patients, students, researchers, and clinicians navigate a complex landscape filled with both opportunities and inefficiencies. At its front-end (yellow node), the web app serves as a transparent, personalized tool, guiding prospective kidney donors through risks, benefits, and post-donation considerations. But beyond this immediate utility lies a deeper infrastructure—a structured backend where information, data, and decision-making processes interconnect dynamically. Students exploring this system may uncover the technical mechanics of data flow, decision nodes, and analytical scripts that underpin clinical research. Meanwhile, principal investigators and research labs act as key agents, shaping the ecosystem through their decisions on disclosure risks, collaboration, and methodological rigor. As stakeholders engage with the platform, they are not merely passive participants but active contributors to the evolution of an adaptive, decentralized, and highly efficient medical knowledge network. This ecosystem is not just a digital tool—it is an epistemic revolution, inviting users at every level to move beyond static knowledge and actively shape the future of patient care, research, and public health decision-making</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
